@@ -1,13 +1,14 @@
-def reverse(word: str):
-    if len(word) == 1:
-        return word
-
-    return reverse(word[1:]) + word[0]
-
-
 def is_palindrome_recursive(word, low_index, high_index):
     if not word:
         return False
 
-    word_reversed = reverse(word)
-    return word_reversed.lower() == word.lower()
+    if low_index == high_index:
+        return True
+
+    if word[low_index] != word[high_index]:
+        return False
+
+    if low_index < high_index + 1:
+        return is_palindrome_recursive(word, low_index + 1, high_index - 1)
+
+    return True
